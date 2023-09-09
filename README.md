@@ -12,10 +12,10 @@
 
 ## Installation
 1. Make sure python is installed, should work on most versions. (I used python 3.11)
-2. Download and open the repository
-3. Run `pip install -r requirements.txt` in cmd
+2. Download and open the repository (Latest Release).
+3. Run `pip install -r requirements.txt` in cmd.
 4. To run the program, either click the `executable` or run the `main.py` python file.
-[Link]: () 'Latest Release'
+[Link]: https://github.com/Shadows687/ValorantInstalock/releases/tag/Working 'Latest Release'
 
 
 <br>
@@ -44,4 +44,3 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 
 <br>
 
-Inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker)
