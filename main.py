@@ -5,8 +5,8 @@ import time
 
 # Customizable Settings
 
-LOOP_DELAY = 0.4; 
-LOCK_DELAY = 0.1;
+LOOP_DELAY = 0.5; 
+LOCK_DELAY = 0.0;
 HOVER_DELAY = 0.0;
 REGIONCODE = None; 
 AGENTCODE = None; 
@@ -16,7 +16,6 @@ AGENTCODE = None;
 SETTINGS = None; 
 SEEN_MATCHES = [];
 RUNNING = False;
-
 
 # Agent & Region dictionaries 
 
@@ -58,23 +57,24 @@ REGIONS = {
 def get_Settings(): # stores the Agent Code and the player Region
     global REGIONCODE 
     global AGENTCODE
+    global LOCK_DELAY
 
     if (input("Would you like to change settings? y/n\n").lower() == 'y'): 
         REGIONCODE = input("Enter Region:\n[1] North America\n[2] Latin America\n[3] Brazil\n[4] Europe\n[5] Asia Pacific\n[6] Korea\n[7] Pbe\nEnter Number: ");
         AGENTCODE = AGENT_CODES[input("Enter Agent:\n[1] Jett\n[2] Reyna\n[3] Raze\n[4] Yoru\n[5] Phoenix\n[6] Neon\n[7] Breach\n[8] Skye\n[9] Sova\n[10] Kayo\n[11] Killjoy\n[12] Cypher\n[13] Sage\n[14] Chamber\n[15] Omen\n[16] Brimstone\n[17] Astra\n[18] Viper\n[19] Fade\n[20] Harbor\n[21] Gekko\n[22] Deadlock\nEnter Number: ")]; 
+        LOCK_DELAY = input("Choose a lock in delay in seconds (0.1 for 100 miliseconds, default is 0):\n")
         with open(os.getcwd() + "\\Settings.txt", "w") as f: # Updates the file with the settings
-            f.write(REGIONCODE + "\n" + AGENTCODE);     
+            f.write(REGIONCODE + "\n" + AGENTCODE + "\n" + LOCK_DELAY);     
     else: 
         try: 
             with open(os.getcwd() + "\\Settings.txt", "r") as f:     
                 REGIONCODE = f.readline()[0:-1];
-                AGENTCODE = f.readline();     
+                AGENTCODE = f.readline()[0:-1];   
+                LOCK_DELAY = float(f.readline());  
         except FileNotFoundError as e: 
             print("Settings file doesn't exist, Please try again. (If it's first time you must edit settings)");
             get_Settings();
-    print(REGIONS[REGIONCODE]) # type: ignore
-    print(AGENTCODE)
-   
+     
 def try_Lock(): 
     global RUNNING
     global SETTINGS
@@ -100,14 +100,12 @@ def try_Lock():
     print("STARTED SEARCHING FOR MATCH")
 
     while RUNNING: 
-
         time.sleep(LOOP_DELAY); # Loop delay
 
         if not RUNNING: 
             return; 
     
         try: 
-
             sessionState = client.fetch_presence(client.puuid)['sessionLoopState']; # Checks to see if your online in Valorant
             matchID = client.pregame_fetch_match()['ID']; # Grabs the pre-game ID   
 
@@ -124,7 +122,7 @@ def try_Lock():
 
                 print("SELCECTED CHARACTER")
 
-                time.sleep(LOCK_DELAY); # Lock Delay
+                time.sleep(LOCK_DELAY); # type: ignore # Lock Delay
                 client.pregame_lock_character(AGENTCODE); # type: ignore
 
                 RUNNING = False; # Finished, stops the loop 
@@ -149,6 +147,9 @@ def main():
         break;  
 
     print("Program Finished")
+
+    if (input("Play again? y/n\n ".lower == "y")):
+        main()
 
 if __name__ == "__main__": 
     main() 
