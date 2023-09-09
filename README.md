@@ -1,5 +1,5 @@
 # Valorant Instalocker 
-## Couldn't have done it with the documentation: https://valapidocs.techchrism.me/endpoint/pre-game-match
+
 <br>
 
 ## Features
@@ -44,4 +44,6 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 > [@deadly](https://github.com/deadly): With all programs like this, there is no guarantee that it's safe because using the VALORANT API in this manner is against Riot's Terms of Service. However, this program does not use an autoclicker to select the agent, read the game's memory, or change the game's files; therefore, the anticheat shouldn't be triggered. No suspensions have been reported so far from using this method of exploit. All things considered, I would use this only on an alt account if you don't want to risk the 7 day API abuse account suspension on your main, albeit unlikely. 
 
 <br>
+
+### Documentation: https://valapidocs.techchrism.me/endpoint/pre-game-match
 
