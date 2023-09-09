@@ -1,5 +1,5 @@
-# Valorant Instalocker
-
+# Valorant Instalocker 
+Couldn't have done it with the documentation: https://valapidocs.techchrism.me/endpoint/pre-game-match
 <br>
 
 ## Features
