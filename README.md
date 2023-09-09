@@ -16,6 +16,8 @@
 3. Run `pip install -r requirements.txt` in cmd.
 4. To run the program, either click the `executable` or run the `main.py` python file.
 [Link]: https://github.com/Shadows687/ValorantInstalock/releases/lates 'Latest Release'
+[Button Icon]: https://img.shields.io/badge/Releases-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
+[![Button Icon]][Link]
 
 
 <br>
