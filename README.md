@@ -15,7 +15,7 @@
 2. Download and open the repository (Latest Release).
 3. Run `pip install -r requirements.txt` in cmd.
 4. To run the program, either click the `executable` or run the `main.py` python file.
-[Link]: [https://github.com/Shadows687/ValorantInstalock/releases/tag/Working 'Latest Release'](https://github.com/Shadows687/ValorantInstalock/releases/latest)
+[Link]: https://github.com/Shadows687/ValorantInstalock/releases/lates 'Latest Release'
 
 
 <br>
