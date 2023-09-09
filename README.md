@@ -11,7 +11,12 @@
 <br>
 
 ## Installation
+1. Make sure python is installed, should work on most versions. (I used python 3.11)
+2. Download and open the repository
+3. Run `pip install -r requirements.txt` in cmd
+4. To run the program, either click the `executable` or run the `main.py` python file.
 [Link]: () 'Latest Release'
+
 
 <br>
 
