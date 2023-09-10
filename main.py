@@ -1,3 +1,4 @@
+import sys
 from valclient.client import Client
 import psutil
 import os
@@ -5,7 +6,7 @@ import time
 
 # Customizable Settings
 
-LOOP_DELAY = 0.5; 
+LOOP_DELAY = 0.1; 
 LOCK_DELAY = 0.0;
 HOVER_DELAY = 0.0;
 REGIONCODE = None; 
@@ -116,24 +117,25 @@ def try_Lock():
 
                 print("FOUND MATCH")
 
-                time.sleep(HOVER_DELAY); # Creates a delay if you want
+                 # Creates a delay if you want
 
                 client.pregame_select_character(AGENTCODE); # type: ignore
 
                 print("SELCECTED CHARACTER")
 
-                time.sleep(LOCK_DELAY); # type: ignore # Lock Delay
+                 # type: ignore # Lock Delay
+
                 client.pregame_lock_character(AGENTCODE); # type: ignore
 
-                RUNNING = False; # Finished, stops the loop 
-
                 print("LOCKED IN CHARACTER")
+
+                RUNNING = False; # Finished, stops the loop 
 
                 return True;
     
         except Exception as e: 
             if "pre-game" not in str(e): 
-                RUNNING = False; 
+                # RUNNING = False; 
                 print("Trouble finding game. ERROR")
                 return; 
 
@@ -148,8 +150,11 @@ def main():
 
     print("Program Finished")
 
-    if (input("Play again? y/n\n ".lower == "y")):
-        main()
+    if (input("Play again? y/n\n").lower() == "y"):
+       print("IN")
+       main();
+    else: 
+        sys.exit()  
 
 if __name__ == "__main__": 
     main() 
