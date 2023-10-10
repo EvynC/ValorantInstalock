@@ -2,6 +2,7 @@ import sys
 from valclient.client import Client
 import psutil
 import os
+import random
 import time 
 
 # Customizable Settings
@@ -21,6 +22,7 @@ RUNNING = False;
 # Agent & Region dictionaries 
 
 AGENT_CODES = {
+    "0": "", # Ranom
     "1": "add6443a-41bd-e414-f6ad-e58d267f4e95", # Jett
     "2": "a3bfb853-43b2-7238-a4f1-ad90e9e46bcc", # Reyna
     "3": "f94c3b30-42be-e959-889c-5aa313dba261", # Raze
@@ -45,6 +47,8 @@ AGENT_CODES = {
     "22": "cc8b64c8-4b25-4ff9-6e7f-37b4da43d235" # Deadlock 
 };
 
+
+
 REGIONS = {
     "1" : "na",
     "2" : "latam",
@@ -60,9 +64,11 @@ def get_Settings(): # stores the Agent Code and the player Region
     global AGENTCODE
     global LOCK_DELAY
 
+    AGENT_CODES["0"] = AGENT_CODES[str(random.randint(1, 22))] # Intitialize the random thingy 
+
     if (input("Would you like to change settings? y/n\n").lower() == 'y'): 
         REGIONCODE = input("Enter Region:\n[1] North America\n[2] Latin America\n[3] Brazil\n[4] Europe\n[5] Asia Pacific\n[6] Korea\n[7] Pbe\nEnter Number: ");
-        AGENTCODE = AGENT_CODES[input("Enter Agent:\n[1] Jett\n[2] Reyna\n[3] Raze\n[4] Yoru\n[5] Phoenix\n[6] Neon\n[7] Breach\n[8] Skye\n[9] Sova\n[10] Kayo\n[11] Killjoy\n[12] Cypher\n[13] Sage\n[14] Chamber\n[15] Omen\n[16] Brimstone\n[17] Astra\n[18] Viper\n[19] Fade\n[20] Harbor\n[21] Gekko\n[22] Deadlock\nEnter Number: ")]; 
+        AGENTCODE = AGENT_CODES[input("Enter Agent:\n[0] Random \n[1] Jett\n[2] Reyna\n[3] Raze\n[4] Yoru\n[5] Phoenix\n[6] Neon\n[7] Breach\n[8] Skye\n[9] Sova\n[10] Kayo\n[11] Killjoy\n[12] Cypher\n[13] Sage\n[14] Chamber\n[15] Omen\n[16] Brimstone\n[17] Astra\n[18] Viper\n[19] Fade\n[20] Harbor\n[21] Gekko\n[22] Deadlock\nEnter Number: ")]; 
         LOCK_DELAY = input("Choose a lock in delay in seconds (0.1 for 100 miliseconds, default is 0):\n")
         with open(os.getcwd() + "\\Settings.txt", "w") as f: # Updates the file with the settings
             f.write(REGIONCODE + "\n" + AGENTCODE + "\n" + LOCK_DELAY);     
@@ -109,6 +115,7 @@ def try_Lock():
         try: 
             sessionState = client.fetch_presence(client.puuid)['sessionLoopState']; # Checks to see if your online in Valorant
             matchID = client.pregame_fetch_match()['ID']; # Grabs the pre-game ID   
+            print(matchID)
 
             print(sessionState)
 
@@ -128,6 +135,8 @@ def try_Lock():
                 client.pregame_lock_character(AGENTCODE); # type: ignore
 
                 print("LOCKED IN CHARACTER")
+
+                client.fetch_match_details(matchID);
 
                 RUNNING = False; # Finished, stops the loop 
 
